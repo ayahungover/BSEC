@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="746.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Brokerpkg.InvestorListSceneController">
+   <children>
+      <TableView fx:id="investorListTableView" layoutX="14.0" layoutY="132.0" prefHeight="253.0" prefWidth="716.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="170.0" text="Investor Name" />
+          <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="86.0" text="Investor ID" />
+            <TableColumn fx:id="contactColumn" minWidth="0.0" prefWidth="140.0" text="Contact " />
+            <TableColumn fx:id="emailColumn" prefWidth="155.0" text="Email" />
+            <TableColumn fx:id="dojColumn" editable="false" prefWidth="164.0" text="Joining Date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

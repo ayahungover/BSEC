@@ -11,17 +11,25 @@ public abstract class User implements Serializable {
     private int id;
     private String name;
     private String address;
-    private String contactNumber;
+    private String contact;
     private String email;
     private LocalDate dob;
     private LocalDate doj;
     private String password;
 
-    public User(int id, String name, String address, String contactNumber, String email, LocalDate dob, LocalDate doj, String password) {
+    public User(int id,
+            String name,
+            String address,
+            String contact,
+            String email,
+            LocalDate dob,
+            LocalDate doj,
+            String password) {
+        
         this.id = id;
         this.name = name;
         this.address = address;
-        this.contactNumber = contactNumber;
+        this.contact = contact;
         this.email = email;
         this.dob = dob;
         this.doj = doj;
@@ -52,12 +60,12 @@ public abstract class User implements Serializable {
         this.address = address;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getContact() {
+        return contact;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContact(String contactNumber) {
+        this.contact = contactNumber;
     }
 
     public String getEmail() {
