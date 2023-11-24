@@ -1,6 +1,7 @@
 
 package employeepkg;
 
+import Brokerpkg.Broker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +32,7 @@ public class EmployeeLoginPageSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String[] designationList = {"Broker", "Financial Auditor", "SEC Adminstrator", "Market Analyst", "Investor Liaison", "Platform Adminstrator"};
+        String[] designationList = {"Broker", "Financial Administrator", "SEC Administrator", "Market Analyst", "Investor Liaison", "Platform Adminstrator"};
         designationComboBox.getItems().addAll(designationList);
     }    
 
@@ -40,14 +41,21 @@ public class EmployeeLoginPageSceneController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = null;
         if(designationComboBox.getValue().equals("Broker")) {
+            
             loader = new FXMLLoader(getClass().getResource("/Brokerpkg/BrokerHomePageScene.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
-                    
-            
+        stage.show();                       
         }
+        else if(designationComboBox.getValue().equals("Financial Administrator")) {
+            loader = new FXMLLoader(getClass().getResource("/FinancialAdministratorpkg/FinancialAdministratorHomePageScene.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();                       
+        }
+        
     }
     
 }
