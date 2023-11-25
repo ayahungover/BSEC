@@ -66,7 +66,7 @@ public interface Account {
     }
     
     
-    public static boolean CheckEmployeeAccountExistence(int EmployeeID) {
+    public static boolean CheckEmployeeAccountExistence(int EmployeeId) {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
@@ -75,7 +75,7 @@ public interface Account {
              
             while(true){
                 c = (Employee) ois.readObject();
-                if(c.getId()== EmployeeID) {
+                if(c.getId()== EmployeeId) {
                     result = true;
                 }
             }

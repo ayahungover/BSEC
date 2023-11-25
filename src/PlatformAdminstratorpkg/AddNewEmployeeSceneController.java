@@ -32,6 +32,8 @@ public class AddNewEmployeeSceneController implements Initializable {
     private Button addNewEmployeeButton;
     @FXML
     private DatePicker dobDatePicker;
+    @FXML
+    private TextField salaryTextField;
 
     /**
      * Initializes the controller class.
@@ -57,7 +59,7 @@ public class AddNewEmployeeSceneController implements Initializable {
         int id = Account.GenerateEmployeeID();
         String password = Account.GenerateEmployeePassword();
         LocalDate DOJ = LocalDate.now();
-        double salary = 0;
+        double salary = Double.parseDouble(salaryTextField.getText());
         Employee e = new Employee(id, name, address, contactNumber, email, DOB, DOJ, password, designation, salary);
         PlatformAdminstrator.EmployeeCreateNewAccount(e);
         
