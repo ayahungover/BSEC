@@ -2,6 +2,7 @@ package mainpkg;
 
 import Brokerpkg.Stockbroker;
 import com.sun.corba.se.pept.broker.Broker;
+import companypkg.Company;
 import employeepkg.Employee;
 import investorpkg.Investor;
 import java.io.FileInputStream;
@@ -368,6 +369,38 @@ public interface Account {
 
     }
     
+    public static int generateCompanyId() throws FileNotFoundException, IOException {
+        int lowerBound = 1000000;
+        int upperBound = 9999999;
+        Set<Integer> usedIds = new HashSet<>();
+        ObjectInputStream ois = null;
+        try {
+            Company c;
+            ois = new ObjectInputStream(new FileInputStream("Company.bin"));
+            while (true) {
+                c = (Company) ois.readObject();
+                usedIds.add(c.getId());
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex1) {
+            }
+        }
+        Random random = new Random();
+        int id;
+        do {
+            id = lowerBound + random.nextInt(upperBound - lowerBound);
+        } while (usedIds.contains(id));
+        usedIds.add(id);
+        return id;
+
+    }
+    
     public static boolean checkInvestorAccountExistence(int investorId) {
         ObjectInputStream ois = null;
         boolean result = false;
@@ -394,6 +427,34 @@ public interface Account {
         return result;
     }
     
+    
+    public static boolean checkCompanyAccountExistence(int companyId) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+            Company c;
+            ois = new ObjectInputStream(new FileInputStream("Company.bin"));
+             
+            while(true){
+                c = (Company) ois.readObject();
+                if(c.getId()== companyId) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+    
     public static boolean checkInvestorAccountExistence(String email) {
         ObjectInputStream ois = null;
         boolean result = false;
@@ -404,6 +465,32 @@ public interface Account {
             while(true){
                 i = (Investor) ois.readObject();
                 if(i.getEmail().equals(email)) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+    public static boolean checkCompanyAccountExistence(String email) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+             Company c;
+             ois = new ObjectInputStream(new FileInputStream("Company.bin"));
+             
+            while(true){
+                c = (Company) ois.readObject();
+                if(c.getEmail().equals(email)) {
                     result = true;
                 }
             }
@@ -449,6 +536,36 @@ public interface Account {
         return result;
     }
     
+    
+    public static boolean companyIdPasswordMatch(int companyId, String password) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+            Company c;
+            ois = new ObjectInputStream(new FileInputStream("Company.bin"));
+             
+            while(true){
+                c = (Company) ois.readObject();
+                if(c.getId() == companyId) {
+                    if(c.getPassword().equals(password)) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+    
     public static Investor getInvestorInstance(int investorId) {
         ObjectInputStream ois = null;
         Investor i1 = null;
@@ -475,4 +592,33 @@ public interface Account {
         return i1;
     }
 
+    
+    public static Company getCompanyInstance(int companyId) {
+        ObjectInputStream ois = null;
+        Company c1 = null;
+        try {
+            Company c2;
+            ois = new ObjectInputStream(new FileInputStream("Company.bin"));
+             
+            while(true){
+                c2 = (Company) ois.readObject();
+                if(c2.getId() == companyId) {
+                    c1 = c2;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return c1;
+    }
+
+    
+    
 }
