@@ -1,5 +1,7 @@
 package mainpkg;
 
+import Brokerpkg.Stockbroker;
+import com.sun.corba.se.pept.broker.Broker;
 import employeepkg.Employee;
 import investorpkg.Investor;
 import java.io.FileInputStream;
@@ -14,14 +16,47 @@ import java.util.Set;
 
 public interface Account {
     
+    public static int GenerateStockbrokerID() {
+        int ID_LOWER_BOUND = 1000000;
+        int ID_UPPER_BOUND = 9999999;
+        Set<Integer> usedIds = new HashSet<>();
+        ObjectInputStream ois = null;
+        try {
+            Stockbroker b;
+            ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             
+            while(true){
+                b = (Stockbroker) ois.readObject();
+                usedIds.add(b.getId());
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        Random random = new Random();
+        int id;
+        do {
+            id = ID_LOWER_BOUND + random.nextInt(ID_UPPER_BOUND - ID_LOWER_BOUND);
+        } while (usedIds.contains(id));
+        usedIds.add(id);
+        return id;
+    }
+    
+    
     public static int GenerateEmployeeID() {
         int ID_LOWER_BOUND = 1000000;
         int ID_UPPER_BOUND = 9999999;
         Set<Integer> usedIds = new HashSet<>();
         ObjectInputStream ois = null;
         try {
-             Employee e;
-             ois = new ObjectInputStream(new FileInputStream("Employee.bin"));
+            Employee e;
+            ois = new ObjectInputStream(new FileInputStream("Employee.bin"));
              
             while(true){
                 e = (Employee) ois.readObject();
@@ -45,6 +80,24 @@ public interface Account {
         usedIds.add(id);
         return id;
     }
+    
+    
+    public static String GenerateStockbrokerPassword() {
+        String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String LOWER = "abcdefghijklmnopqrstuvwxyz";
+
+        String ALL_CHARACTERS = UPPER + LOWER ;
+        int PASSWORD_LENGTH = 12;
+
+        Random random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+        for (int i = 0; i < PASSWORD_LENGTH; i++) {
+            int index = random.nextInt(ALL_CHARACTERS.length());
+            password.append(ALL_CHARACTERS.charAt(index));
+        }
+        return password.toString();
+    }
+    
     
     
     public static String GenerateEmployeePassword() {
@@ -92,6 +145,57 @@ public interface Account {
         return result;
     }
     
+    public static boolean CheckStockbrokerAccountExistence(int stockbrokerId) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+             Stockbroker b;
+             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             
+            while(true){
+                b = (Stockbroker) ois.readObject();
+                if(b.getId()== stockbrokerId) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+    public static boolean CheckStockbrokerAccountExistence(String Email) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+            Stockbroker b;
+            ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             
+            while(true){
+                b = (Stockbroker) ois.readObject();
+                if(b.getEmail().equals(Email)) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
     
     public static boolean CheckEmployeeAccountExistence(String Email) {
         ObjectInputStream ois = null;
@@ -148,6 +252,35 @@ public interface Account {
         return result;
     }
     
+    
+    public static boolean StockbrokerPasswordMatch(int EmployeeID, String Password) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+             Stockbroker b;
+             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             
+            while(true){
+                b = (Stockbroker) ois.readObject();
+                if(b.getId() == EmployeeID) {
+                    if(b.getPassword().equals(Password)) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
     public static Employee getEmployeeInstance(int EmployeeID) {
         ObjectInputStream ois = null;
         Employee oc = null;
@@ -174,6 +307,35 @@ public interface Account {
         return oc;
     }
 
+    
+    public static Stockbroker getStockbrokerInstance(int EmployeeID) {
+        ObjectInputStream ois = null;
+        Stockbroker ob = null;
+        try {
+             Stockbroker b;
+             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             
+            while(true){
+                b = (Stockbroker) ois.readObject();
+                if(b.getId() == EmployeeID) {
+                    ob = b;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return ob;
+    }
+
+    
+    
     public static int generateInvestorId() throws FileNotFoundException, IOException {
         int lowerBound = 1000000;
         int upperBound = 9999999;

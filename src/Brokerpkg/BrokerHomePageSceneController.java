@@ -18,10 +18,10 @@ import javafx.stage.Stage;
 
 
 public class BrokerHomePageSceneController implements Initializable {
-    private Broker b;
+    private Stockbroker b;
 
     
-    public void data(Broker b){
+    public void data(Stockbroker b){
         this.b = b;
     }
     
@@ -55,8 +55,8 @@ public class BrokerHomePageSceneController implements Initializable {
 
     @FXML
     private void logoutMenuItemOnClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/employeepkg/EmployeeLoginPageScene.fxml"));
+        Stage stage = (Stage) BorderPane.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/mainpkg/SelectUserScene.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -32,15 +32,15 @@ public class PlatformAdminstratorHomePageSceneController implements Initializabl
         
     }
 
+
+
     @FXML
-    private void logOutMenuOnClick(ActionEvent event) throws IOException {
+    private void logooutMenuItemOnClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/employeepkg/EmployeeLoginPageScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/employeepkg/RmployrrLoginPageScene.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    
-    
     }
     
 }

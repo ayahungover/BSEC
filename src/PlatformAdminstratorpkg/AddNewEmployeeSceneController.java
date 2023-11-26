@@ -1,6 +1,7 @@
 
 package PlatformAdminstratorpkg;
 
+import Brokerpkg.Stockbroker;
 import employeepkg.Employee;
 import java.net.URL;
 import java.time.LocalDate;
@@ -52,16 +53,18 @@ public class AddNewEmployeeSceneController implements Initializable {
         String email = emailTextField.getText();
         LocalDate DOB = dobDatePicker.getValue();
         String designation = designationComboBox.getValue();
-        if(Account.CheckEmployeeAccountExistence(email) == true) {
-            PopUp.Message("Account Already Exists !");
-            return;
+        if(designation == "Broker"){  
+            if(Account.CheckStockbrokerAccountExistence(email) == true) {
+                PopUp.Message("Account Already Exists !");
+                return;
+            }
         }
-        int id = Account.GenerateEmployeeID();
-        String password = Account.GenerateEmployeePassword();
+        int id = Account.GenerateStockbrokerID();
+        String password = Account.GenerateStockbrokerPassword();
         LocalDate DOJ = LocalDate.now();
         double salary = Double.parseDouble(salaryTextField.getText());
-        Employee e = new Employee(id, name, address, contactNumber, email, DOB, DOJ, password, designation, salary);
-        PlatformAdminstrator.EmployeeCreateNewAccount(e);
+        Stockbroker b = new Stockbroker(id, name, address, contactNumber, email, DOB, DOJ, password, designation, salary);
+        PlatformAdminstrator.StockbrokerCreateNewAccount(b);
         
         PopUp.Message("Account has been Successfully Created\n"
                 + "Employee ID: " + id +"\n"

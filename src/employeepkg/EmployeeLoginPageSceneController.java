@@ -2,6 +2,7 @@
 package employeepkg;
 
 import Brokerpkg.BrokerHomePageSceneController;
+import Brokerpkg.Stockbroker;
 import com.sun.corba.se.pept.broker.Broker;
 import investorpkg.Investor;
 import investorpkg.InvestorHomePageSceneController;
@@ -61,22 +62,22 @@ public class EmployeeLoginPageSceneController implements Initializable {
         else{
             int id = Integer.parseInt(employeeIdTextField.getText());
             String password = employeePasswordPasswordField.getText();
-            if(!Account.CheckEmployeeAccountExistence(id)) {
+            if(!Account.CheckStockbrokerAccountExistence(id)) {
                 PopUp.Message("Account Doesn't Exist !");
                 return;
             }
-            if(!Account.EmployeepasswordMatch(id, password)) {
+            if(!Account.StockbrokerPasswordMatch(id, password)) {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 PopUp.Message("Password didn't Match !");
                 return;
             }
-            Employee e = Account.getEmployeeInstance(id);
+            Stockbroker b = Account.getStockbrokerInstance(id);
 
             if (designationComboBox.getValue().equals("Broker")){
-                loader = new FXMLLoader(getClass().getResource("/investorpkg/InvestorHomePageScene.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/Brokerpkg/BrokerHomepageScene.fxml"));
                 Parent root = loader.load();                
                 BrokerHomePageSceneController ctrl = loader.getController();
-                ctrl.data((Broker) e);
+                ctrl.data((Stockbroker) b);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();

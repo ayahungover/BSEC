@@ -1,6 +1,7 @@
 
 package PlatformAdminstratorpkg;
 
+import Brokerpkg.Stockbroker;
 import Stockpkg.Stock;
 import employeepkg.Employee;
 import investorpkg.Investor;
@@ -98,6 +99,35 @@ public interface PlatformAdminstrator {
                 if(oos != null) oos.close();
             } catch (IOException ex) {
                 Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    public static void StockbrokerCreateNewAccount(Stockbroker b) {
+        File f = null;
+        FileOutputStream fos = null;      
+        ObjectOutputStream oos = null;
+
+        try {
+            f = new File("Stockbroker.bin");
+            if(f.exists()){
+                fos = new FileOutputStream(f,true);
+                oos = new AppendableObjectOutputStream(fos);                
+            }
+            else{
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);               
+            }
+            oos.writeObject(b);
+
+        } catch (IOException ex) {
+            Logger.getLogger(Stockbroker.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if(oos != null) oos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Stockbroker.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
