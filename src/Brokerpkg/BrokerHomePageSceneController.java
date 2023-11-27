@@ -61,5 +61,12 @@ public class BrokerHomePageSceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void buyStocksMenuItemOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BuyStockScene.fxml"));
+        Parent root = loader.load();
+        BorderPane.setCenter(root);   
+    }
     
 }

@@ -23,16 +23,16 @@ public interface PlatformAdminstrator {
     
 
     public static ObservableList <Stock> getStockList() {
-        ObservableList <Stock> list = FXCollections.observableArrayList();
+        ObservableList <Stock> stockList = FXCollections.observableArrayList();
         ObjectInputStream ois = null;
         boolean result = false;
         try {
-             Stock s;
-             ois = new ObjectInputStream(new FileInputStream("Stock.bin"));
+            Stock s;
+            ois = new ObjectInputStream(new FileInputStream("Stock.bin"));
              
             while(true){
                 s = (Stock) ois.readObject();
-                list.add(s);
+                stockList.add(s);
             }
         }
         catch(RuntimeException e){
@@ -44,7 +44,7 @@ public interface PlatformAdminstrator {
                     ois.close();
             } catch (IOException ex1) {  }           
         }
-        return list;
+        return stockList;
     }
 
     
@@ -54,7 +54,7 @@ public interface PlatformAdminstrator {
         ObjectOutputStream oos = null;
 
         try {
-            f = new File("Package.bin");
+            f = new File("Stock.bin");
             if(f.exists()){
                 fos = new FileOutputStream(f,true);
                 oos = new AppendableObjectOutputStream(fos);                
@@ -66,15 +66,20 @@ public interface PlatformAdminstrator {
             oos.writeObject(s);
 
         } catch (IOException ex) {
-            Logger.getLogger(Package.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if(oos != null) oos.close();
             } catch (IOException ex) {
-                Logger.getLogger(Package.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
+    
+    
+
+    
+    
     
     public static void EmployeeCreateNewAccount(Employee e) {
         File f = null;

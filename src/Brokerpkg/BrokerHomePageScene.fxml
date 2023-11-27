@@ -17,7 +17,7 @@
             </Menu>
           <Menu mnemonicParsing="false" text="Order Processing">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#buyStocksMenuItemOnClick" text="Buy available stocks" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Investors">
@@ -32,7 +32,6 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Logout">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
                   <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemOnClick" text="LogOut" />
               </items>
             </Menu>
