@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="investorpkg.StockListController">
+   <children>
+      <TableView fx:id="stockTableView" layoutX="49.0" layoutY="60.0" prefHeight="201.0" prefWidth="602.0">
+        <columns>
+          <TableColumn fx:id="codeColumn" prefWidth="102.0" text="Stock Code" />
+          <TableColumn fx:id="companyNameColumn" prefWidth="125.0" text="Company Name" />
+            <TableColumn fx:id="oldPriceColumn" prefWidth="98.0" text="Old Price" />
+            <TableColumn fx:id="newPriceColumn" prefWidth="94.0" text="New Price" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -17,8 +17,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Stock Exchange">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#sellStocksButtonOnClick" text="Sell Stocks" />
-                  <MenuItem mnemonicParsing="false" onAction="#buyStocksButtonOnClick" text="Buy Stocks " />
+                  <MenuItem mnemonicParsing="false" onAction="#stockListButtonOnClick" text="Stock List" />
               <MenuItem mnemonicParsing="false" onAction="#orderSummeryButtonOnClick" text="Order Summery" />
             </items>
           </Menu>
@@ -45,7 +44,7 @@
         </menus>
       </MenuBar>
    </top>
-   <bottom>
-      <Button mnemonicParsing="false" onAction="#backButtonOnClick" text="Back" BorderPane.alignment="CENTER" />
-   </bottom>
+   <left>
+      <Label fx:id="nameTF" text="Label" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>

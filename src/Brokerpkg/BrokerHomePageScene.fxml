@@ -9,9 +9,15 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
+            <Menu mnemonicParsing="false" text="Account">
+              <items>
+                <MenuItem fx:id="salaryAndBalanceMenuItem" mnemonicParsing="false" onAction="#salaryAndBalanceMenuItemOnClick" text="Salary and Balance" />
+                  <MenuItem mnemonicParsing="false" text="Account details" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Order Processing">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#buyStocksMenuItemOnClick" text="Buy available stocks" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Investors">
@@ -24,6 +30,11 @@
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Logout">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemOnClick" text="LogOut" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
