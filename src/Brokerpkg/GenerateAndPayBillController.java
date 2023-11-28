@@ -13,12 +13,14 @@ import javafx.scene.control.TextArea;
 
 public class GenerateAndPayBillController implements Initializable {
     
-    private Stockbroker b;
-    private Stock s;
+    
     @FXML
     private TextArea billTextArea;
     private String bill = null; 
+    private Stockbroker b;
+    private Stock s;
     
+
     public void data(Stockbroker b, Stock s){
         this.b = b;
         this.s = s;
@@ -33,9 +35,7 @@ public class GenerateAndPayBillController implements Initializable {
                 "\nStock Old Price: " + s.getOldPrice() + " BDT" +
                 "\nStock New Price: " + s.getNewPrice() + " BDT" +
                 "\nStock Purchase Date:\t\t" + LocalDate.now();
-    }
-
-    public GenerateAndPayBillController() {
+        billTextArea.setText(bill);
     }
 
 

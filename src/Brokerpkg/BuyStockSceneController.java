@@ -34,7 +34,15 @@ public class BuyStockSceneController implements Initializable {
     private TableColumn<Stock, Double> newPriceColumn;
     @FXML
     private TableView<Stock> tableView;
+    
+    
     private Stockbroker b;
+    public void data (Stockbroker b){
+        this.b = b;
+    }
+    
+    
+    
     
 
     @Override

@@ -17,8 +17,6 @@ public class Investor extends User implements Serializable {
             LocalDate doj,
             String password,
             double balance){
-        
-        
         super(id, name, address, contact, email, dob, LocalDate.now(), password);
         this.balance = balance;                
     }

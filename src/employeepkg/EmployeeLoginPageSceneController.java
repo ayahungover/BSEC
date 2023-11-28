@@ -40,7 +40,7 @@ public class EmployeeLoginPageSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String[] designationList = {"Broker", "Financial Administrator", "SEC Administrator", "Market Analyst", "Investor Liaison", "Platform Adminstrator"};
+        String[] designationList = {"Broker","Financial Administrator", "SEC Administrator", "Market Analyst", "Investor Liaison", "Platform Adminstrator"};
         designationComboBox.getItems().addAll(designationList);
     }    
 
@@ -66,7 +66,7 @@ public class EmployeeLoginPageSceneController implements Initializable {
                 PopUp.Message("Account Doesn't Exist !");
                 return;
             }
-            if(!Account.StockbrokerPasswordMatch(id, password)) {
+            if(!Account.stockbrokerIdPasswordMatch(id, password)) {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 PopUp.Message("Password didn't Match !");
                 return;

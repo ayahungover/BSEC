@@ -150,8 +150,8 @@ public interface Account {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
-             Stockbroker b;
-             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+            Stockbroker b;
+            ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
              
             while(true){
                 b = (Stockbroker) ois.readObject();
@@ -254,7 +254,7 @@ public interface Account {
     }
     
     
-    public static boolean StockbrokerPasswordMatch(int EmployeeID, String Password) {
+    public static boolean stockbrokerIdPasswordMatch(int stockbrokerId, String Password) {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
@@ -263,7 +263,7 @@ public interface Account {
              
             while(true){
                 b = (Stockbroker) ois.readObject();
-                if(b.getId() == EmployeeID) {
+                if(b.getId() == stockbrokerId) {
                     if(b.getPassword().equals(Password)) {
                         result = true;
                     }
@@ -309,7 +309,7 @@ public interface Account {
     }
 
     
-    public static Stockbroker getStockbrokerInstance(int EmployeeID) {
+    public static Stockbroker getStockbrokerInstance(int stockbrokerId) {
         ObjectInputStream ois = null;
         Stockbroker ob = null;
         try {
@@ -318,7 +318,7 @@ public interface Account {
              
             while(true){
                 b = (Stockbroker) ois.readObject();
-                if(b.getId() == EmployeeID) {
+                if(b.getId() == stockbrokerId) {
                     ob = b;
                 }
             }
