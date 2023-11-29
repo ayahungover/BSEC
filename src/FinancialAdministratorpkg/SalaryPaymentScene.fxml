@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="FinancialAdministratorpkg.SalaryPaymentSceneController">
+   <children>
+      <TextField fx:id="idTextField" layoutX="226.0" layoutY="60.0" promptText="Employee ID" />
+      <TextField fx:id="baseSalaryTextField" layoutX="226.0" layoutY="135.0" promptText="Base Salary" />
+      <TextField fx:id="bonusTextField" layoutX="226.0" layoutY="175.0" promptText="Bonus" />
+      <ComboBox fx:id="monthComboBox" layoutX="225.0" layoutY="96.0" prefWidth="150.0" promptText="Month" />
+      <Label fx:id="totalLabel" layoutX="266.0" layoutY="224.0" text="Total Salary: " />
+      <Button layoutX="414.0" layoutY="96.0" mnemonicParsing="false" onAction="#calculateTotalSalaryButtonOnClick" text="Calculate total payable" />
+      <Button layoutX="457.0" layoutY="148.0" mnemonicParsing="false" onAction="#payEmployeeButtonOnClick" text="Pay employee" />
+   </children>
+</AnchorPane>

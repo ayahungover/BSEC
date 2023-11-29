@@ -27,7 +27,7 @@
             <Menu mnemonicParsing="false" text="Employee Salary Management">
               <items>
                 <MenuItem fx:id="seeEmployeeSalaryMenuItem" mnemonicParsing="false" onAction="#seeEmployeeSalaryMenuItemOnClick" text="See employee salary details" />
-                  <MenuItem mnemonicParsing="false" text="Adjust Salary" />
+                  <MenuItem mnemonicParsing="false" onAction="#salaryPaymentButtonOnClick" text="Pay Employee" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Logout">

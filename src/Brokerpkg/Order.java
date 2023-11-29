@@ -94,11 +94,11 @@ public class Order implements Serializable {
     }
     
     public static void updateStockbrokerBalance(Stockbroker b, Stock s) throws IOException, ClassNotFoundException{
-        //find new balance
+        
         double newBalance = b.getBalance() + (0.1 * s.getNewPrice());
         ObservableList <Stockbroker> stockbrokerList = FXCollections.observableArrayList();
         
-        //read existing file into list
+
         File f = new File("Stockbroker.bin");
         FileInputStream fis = new FileInputStream(f);
         ObjectInputStream ois = new ObjectInputStream(fis);
@@ -118,7 +118,7 @@ public class Order implements Serializable {
             } catch (IOException ex) {}
         }
         
-        //modify list with new balance
+        
         for(Stockbroker e: stockbrokerList){
             if (e.getId() == b.getId()){
                 e.setBalance(newBalance);
@@ -126,7 +126,7 @@ public class Order implements Serializable {
             }
         }
         
-        //delete file and write list to new file
+        
         f.delete();
         f = new File("Stockbroker.bin");        
         try{

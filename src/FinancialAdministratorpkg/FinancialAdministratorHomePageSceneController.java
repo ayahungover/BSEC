@@ -37,6 +37,7 @@ public class FinancialAdministratorHomePageSceneController implements Initializa
 
     @FXML
     private void seeEmployeeSalaryMenuItemOnClick(ActionEvent event) {
+
     }
 
     @FXML
@@ -46,6 +47,14 @@ public class FinancialAdministratorHomePageSceneController implements Initializa
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();        
+    }
+
+    @FXML
+    private void salaryPaymentButtonOnClick(ActionEvent event) throws IOException {
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("SalaryPaymentScene.fxml"));
+       Parent root = loader.load();
+       BorderPane.setCenter(root);
+
     }
     
 }
