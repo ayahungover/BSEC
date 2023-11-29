@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import mainpkg.PopUp;
 
 
 public class BuyStockSceneController implements Initializable {
@@ -63,11 +64,18 @@ public class BuyStockSceneController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GenerateAndPayBill.fxml"));
         Parent root = loader.load();
         Stock s = tableView.getSelectionModel().getSelectedItem();
-        GenerateAndPayBillController ctrl = loader.getController();
-        ctrl.data(b, s);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if( s != null){
+            GenerateAndPayBillController ctrl = loader.getController();
+            ctrl.data(b, s);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        
+        }
+        else{
+            PopUp.Message("No stock is selected!");
+        }
+        
     }
     
 }

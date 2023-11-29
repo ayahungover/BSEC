@@ -2,13 +2,17 @@
 package Brokerpkg;
 
 import Stockpkg.Stock;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import mainpkg.PopUp;
 
 
 public class GenerateAndPayBillController implements Initializable {
@@ -50,6 +54,21 @@ public class GenerateAndPayBillController implements Initializable {
 
     @FXML
     private void payBillButtonOnClick(ActionEvent event) {
+        int transactionId = Order.GenerateTransactionId();
+        Order o = new Order(b, s, bill, transactionId);
+        Order.insertBill(o);
+        b.setBalance(b.getBalance() + (s.getNewPrice() * 0.1));
+        PopUp.Message("Transaction has been Completed !\n"
+                + "Transaction ID: " + Integer.toString(transactionId) +
+                "\nyour current balance: " + b.getBalance() +"BDT");
+        try {
+            Order.updateStockbrokerBalance(b, s);
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(GenerateAndPayBillController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        System.out.println(b.getBalance());
     }
     
 }
