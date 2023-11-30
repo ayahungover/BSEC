@@ -10,5 +10,6 @@
       <TextField fx:id="rechargeTextField" layoutX="78.0" layoutY="65.0" promptText="Recharge " />
       <Button layoutX="248.0" layoutY="65.0" mnemonicParsing="false" onAction="#rechargeButtonOnClick" text="Recharge Account" />
       <TextArea fx:id="balanceTextArea" layoutX="372.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: AQUZ;" />
+      <Button layoutX="78.0" layoutY="145.0" mnemonicParsing="false" onAction="#seeBalanceButtonOnClick" text="See balance" />
    </children>
 </AnchorPane>

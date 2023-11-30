@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import mainpkg.PopUp;
 
 
 public class SalaryAndBalanceSceneController implements Initializable {
@@ -54,7 +55,15 @@ public class SalaryAndBalanceSceneController implements Initializable {
     @FXML
     private void rechargeButtonOnClick(ActionEvent event) {
         double newBalance = Double.parseDouble(rechargeTextField.getText()) + b.getBalance();
+        
         b.setBalance(newBalance);
+        PopUp.Message("Recharge successful! Please check balance. ");
+        balanceTextArea.setText("your current balance is: "+ newBalance);
+    }
+
+    @FXML
+    private void seeBalanceButtonOnClick(ActionEvent event) {
+        double newBalance = b.getBalance();
         balanceTextArea.setText("your current balance is: "+ newBalance);
     }
     

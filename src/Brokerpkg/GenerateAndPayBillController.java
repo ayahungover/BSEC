@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import mainpkg.PDFGenerator;
 import mainpkg.PopUp;
 
 
@@ -50,6 +51,8 @@ public class GenerateAndPayBillController implements Initializable {
 
     @FXML
     private void downloadBillButtonOnClick(ActionEvent event) {
+        PDFGenerator.generatePdf(bill);
+        PopUp.Message("Bill Has been dowloaded\n");
     }
 
     @FXML
@@ -61,14 +64,6 @@ public class GenerateAndPayBillController implements Initializable {
         PopUp.Message("Transaction has been Completed !\n"
                 + "Transaction ID: " + Integer.toString(transactionId) +
                 "\nyour current balance: " + b.getBalance() +"BDT");
-        try {
-            Order.updateStockbrokerBalance(b, s);
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(GenerateAndPayBillController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        System.out.println(b.getBalance());
     }
     
 }

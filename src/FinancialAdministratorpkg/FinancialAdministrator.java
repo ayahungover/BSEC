@@ -39,8 +39,9 @@ public interface FinancialAdministrator {
                     ois.close();
             } catch (IOException ex1) {  }           
         }
-        return list;
-    }
+            return list;
+            
+        }
         public static void PaySalary(Salary c) {
         File f = null;
         FileOutputStream fos = null;      
@@ -68,6 +69,38 @@ public interface FinancialAdministrator {
             }
         }
     }
+        
+        public static void addTaxData(String month, double income, double deductions, double taxableIncome, double taxPercentage, double totalTax){
+            File f = null;
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            try {
+                f = new File("TaxData.bin");
+                if (f.exists()) {
+                    fos = new FileOutputStream(f, true);
+                    oos = new AppendableObjectOutputStream(fos);
+                } else {
+                    fos = new FileOutputStream(f);
+                    oos = new ObjectOutputStream(fos);
+                }
+
+                TaxData temp = new TaxData( month, income,  deductions,  taxableIncome,  taxPercentage,  totalTax);
+
+                oos.writeObject(temp);
+
+            } catch (IOException ex) {
+                
+            } finally {
+                try {
+                    if (oos != null) oos.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        
+        
         
 
 }

@@ -56,5 +56,12 @@ public class FinancialAdministratorHomePageSceneController implements Initializa
        BorderPane.setCenter(root);
 
     }
+
+    @FXML
+    private void taxCalculationMenuItemOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TaxCalculationScene.fxml"));
+        Parent root = loader.load();
+        BorderPane.setCenter(root);
+    }
     
 }

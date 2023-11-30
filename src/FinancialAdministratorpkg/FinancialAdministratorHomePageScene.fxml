@@ -9,21 +9,6 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
             <Menu mnemonicParsing="false" text="Employee Salary Management">
               <items>
                 <MenuItem fx:id="seeEmployeeSalaryMenuItem" mnemonicParsing="false" onAction="#seeEmployeeSalaryMenuItemOnClick" text="See employee salary details" />
@@ -33,6 +18,11 @@
             <Menu mnemonicParsing="false" text="Logout">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemOnClick" text="Logout" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Tax ">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#taxCalculationMenuItemOnClick" text="Tax Calculation" />
               </items>
             </Menu>
         </menus>
