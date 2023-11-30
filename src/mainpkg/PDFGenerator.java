@@ -35,6 +35,9 @@ import javafx.scene.transform.Scale;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import com.itextpdf.kernel.colors.ColorConstants;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 
@@ -60,7 +63,7 @@ public class PDFGenerator {
                 document.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
     

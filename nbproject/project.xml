@@ -22,7 +22,7 @@
             </test-roots>
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
-            <definitions>D:\uni stuff\Java\iText7-Core-7.1.15\nblibraries.properties</definitions>
+            <definitions>D:\uni stuff\Java\BSEC\BSEC\iText7-Core-7.1.15\nblibraries.properties</definitions>
         </libraries>
     </configuration>
 </project>

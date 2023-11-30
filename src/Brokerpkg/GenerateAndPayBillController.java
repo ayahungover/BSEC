@@ -52,7 +52,7 @@ public class GenerateAndPayBillController implements Initializable {
     @FXML
     private void downloadBillButtonOnClick(ActionEvent event) {
         PDFGenerator.generatePdf(bill);
-        PopUp.Message("Bill Has been dowloaded\n");
+        PopUp.Message("Bill Has been dowloaded\n");        
     }
 
     @FXML
