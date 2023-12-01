@@ -25,15 +25,10 @@ public class InvestorHomePageSceneController implements Initializable {
     @FXML
     private BorderPane BorderPane;
     private Investor i;
-    @FXML
-    private Label nameTF;
     public void data(Investor i){
         this.i = i;
     }
-    public void s(){
-        System.out.println(i.getAddress());      
-    }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
@@ -57,7 +52,13 @@ public class InvestorHomePageSceneController implements Initializable {
 
 
     @FXML
-    private void orderSummeryButtonOnClick(ActionEvent event) {
+    private void orderSummeryButtonOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderSummery.fxml"));
+        Parent root = loader.load();
+        OrderSummeryController ctrl = loader.getController();
+        ctrl.data(i);
+        BorderPane.setCenter(root);
+        
     }
 
     @FXML
@@ -65,7 +66,12 @@ public class InvestorHomePageSceneController implements Initializable {
     }
 
     @FXML
-    private void bankButtonOnClick(ActionEvent event) {
+    private void bankButtonOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RechargeAndCheckBalance.fxml"));
+        Parent root = loader.load();
+        RechargeAndCheckBalanceController ctrl = loader.getController();
+        ctrl.data(i);
+        BorderPane.setCenter(root);
     }
 
     @FXML
@@ -84,7 +90,19 @@ public class InvestorHomePageSceneController implements Initializable {
     }
 
     @FXML
-    private void stockListButtonOnClick(ActionEvent event) {
+    private void stockListButtonOnClick(ActionEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StockList.fxml"));
+        Parent root = loader.load();
+        StockListController ctrl = loader.getController();
+        ctrl.data(i);
+        BorderPane.setCenter(root);
+        
+        
+//        Parent parent = FXMLLoader.load(getClass().getResource("StockList.fxml"));
+//        StockListController ctrl = loader.getController();
+//        ctrl.data(i);
+//        BorderPane.setCenter(parent);
     }
     
     

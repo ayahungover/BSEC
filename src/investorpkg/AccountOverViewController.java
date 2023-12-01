@@ -30,14 +30,11 @@ public class AccountOverViewController implements Initializable {
     @FXML
     private Label emailLabel;
     @FXML
-    private Label DOBLabel;
-
-    
-    
-
-    private Investor i;
+    private Label DOBLabel; 
     @FXML
     private Label idLabel;
+    
+    private Investor i;
     public void data(Investor i){
         this.i = i;
     }
@@ -56,6 +53,7 @@ public class AccountOverViewController implements Initializable {
 
     @FXML
     private void viewButtonOnClick(ActionEvent event) {
+        idLabel.setText(Integer.toString(i.getId()));
         nameLabel.setText(i.getName());
         contactNoLabel.setText(i.getContact());
         addressLabel.setText(i.getAddress());
