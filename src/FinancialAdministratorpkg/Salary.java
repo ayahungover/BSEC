@@ -134,6 +134,33 @@ public class Salary implements Serializable {
         
         
     }
+    
+    
+    public static Salary getSalaryInstance(int employeeId) {
+        ObjectInputStream ois = null;
+        Salary sal = null;
+        try {
+            Salary s;
+            ois = new ObjectInputStream(new FileInputStream("Salary.bin"));
+             
+            while(true){
+                s = (Salary) ois.readObject();
+                if(s.getEmployeeId() == employeeId) {
+                    sal = s;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return sal;
+    }
 
     
 }
