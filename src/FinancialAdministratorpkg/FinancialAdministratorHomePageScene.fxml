@@ -15,14 +15,24 @@
                   <MenuItem mnemonicParsing="false" onAction="#salaryPaymentButtonOnClick" text="Pay Employee" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Logout">
+            <Menu mnemonicParsing="false" text="Reports">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemOnClick" text="Logout" />
+                <MenuItem mnemonicParsing="false" onAction="#reportsMenuItemOnClick" text="Create and View reports" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Tax ">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#taxCalculationMenuItemOnClick" text="Tax Calculation" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="License">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#licenseDetailsMenuItemOnClick" text="License Details" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Logout">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemOnClick" text="Logout" />
               </items>
             </Menu>
         </menus>

@@ -40,7 +40,7 @@ public class StockbrokerLoginPageSceneController implements Initializable {
     private void loginButtonOnClick(ActionEvent event) throws IOException {
         int id = Integer.parseInt(idTextField.getText());
         String password = passwordTextField.getText();
-        if(!Account.CheckStockbrokerAccountExistence(id)) {
+        if(!Account.checkStockbrokerAccountExistence(id)) {
             PopUp.Message("Account Doesn't Exist !");
             return;
         }

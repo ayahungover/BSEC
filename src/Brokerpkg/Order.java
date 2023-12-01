@@ -127,6 +127,10 @@ public class Order implements Serializable {
         }
         
         
+        
+        
+        
+        
         f.delete();
         f = new File("Stockbroker.bin");        
         try{
@@ -155,6 +159,78 @@ public class Order implements Serializable {
         
         
     }
+    
+    
+    
+    public static void updateStockbrokerBalance(Stockbroker b, double newBalance) throws IOException, ClassNotFoundException{
+        
+        
+        ObservableList <Stockbroker> stockbrokerList = FXCollections.observableArrayList();
+        
+
+        File f = new File("Stockbroker.bin");
+        FileInputStream fis = new FileInputStream(f);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Stockbroker temp = null;
+        try {
+            while(true){
+                temp = (Stockbroker) ois.readObject();
+                stockbrokerList.add(temp);
+            }
+        } catch (FileNotFoundException ex ) {ex.printStackTrace();}
+        catch(EOFException e){}
+        catch(IOException ex){ex.printStackTrace();}
+               
+        finally {
+            try {
+                ois.close();
+            } catch (IOException ex) {}
+        }
+        
+        
+        for(Stockbroker e: stockbrokerList){
+            if (e.getId() == b.getId()){
+                e.setBalance(newBalance);
+                break;
+            }
+        }
+        
+        
+        
+        
+        
+        
+        f.delete();
+        f = new File("Stockbroker.bin");        
+        try{
+            FileOutputStream fos = new FileOutputStream(f);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            if(f.exists()){
+                fos = new FileOutputStream(f,true);
+                oos = new AppendableObjectOutputStream(fos);                
+            }
+            else{
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);               
+            }
+            for(Stockbroker e: stockbrokerList){
+                oos.writeObject(e);
+            }
+            oos.close();
+                
+        } catch (IOException e) {}
+        finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {}
+        }
+        
+        
+        
+    }
+    
+    
+    
     
     public static int GenerateTransactionId () {
         int ID_LOWER_BOUND = 1000000;

@@ -80,5 +80,12 @@ public class BrokerHomePageSceneController implements Initializable {
         BorderPane.setCenter(root);
         System.out.println(b.getBalance());
     }
+
+    @FXML
+    private void investorHistoryMenuItemOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvestorHistory.fxml"));
+        Parent root = loader.load();
+        BorderPane.setCenter(root);
+    }
     
 }

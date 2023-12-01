@@ -62,7 +62,7 @@ public class EmployeeLoginPageSceneController implements Initializable {
         else{
             int id = Integer.parseInt(employeeIdTextField.getText());
             String password = employeePasswordPasswordField.getText();
-            if(!Account.CheckStockbrokerAccountExistence(id)) {
+            if(!Account.checkStockbrokerAccountExistence(id)) {
                 PopUp.Message("Account Doesn't Exist !");
                 return;
             }

@@ -100,6 +100,85 @@ public interface FinancialAdministrator {
             }
         }
         
+        public static void CreateReport(String subject, String text){
+               
+            File s = null;
+            FileOutputStream fos = null;      
+            ObjectOutputStream oos = null;
+
+
+            try {
+                s = new File("Report.bin");
+                if(s.exists()){
+                    fos = new FileOutputStream(s,true);
+                    oos = new AppendableObjectOutputStream(fos);                
+                }
+                else{
+                    fos = new FileOutputStream(s);
+                    oos = new ObjectOutputStream(fos);               
+                }
+                Report newReport = new Report(subject, text);    
+                oos.writeObject(newReport);
+            } catch (IOException ex) {
+                Logger.getLogger(FinancialAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if(oos != null) oos.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(FinancialAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }                
+        }
+        
+        public static String SearchReport(String subject) throws IOException{
+
+            ObjectInputStream ois = null;
+
+            try{
+                Report r;
+                ois = new ObjectInputStream(new FileInputStream("Report.bin"));
+
+                while(true){
+                    r = (Report) ois.readObject();
+                    if(r.subject.equals(subject)){
+                        return r.text;
+                    }
+
+                }
+            }
+            catch(RuntimeException e){
+                e.printStackTrace();
+            }
+            catch (Exception ex){
+                try {
+                    if(ois!=null){
+                        ois.close();
+                    }
+                }
+                catch (IOException ex1){ }
+            }
+            return null;
+        
+    
+        }
+    
+        
+    public static boolean isAlpha(String s){
+        if (s == null) {
+            return false;
+        }
+ 
+        for (int i = 0; i < s.length(); i++)
+        {
+            char c = s.charAt(i);
+            if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+        
         
         
 

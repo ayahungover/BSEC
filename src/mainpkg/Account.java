@@ -17,6 +17,34 @@ import java.util.Set;
 
 public interface Account {
     
+    public static Stockbroker getStockbrokerInstance(int stockbrokerId) {
+        ObjectInputStream ois = null;
+        Stockbroker b1 = null;
+        try {
+             Stockbroker b2;
+             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             
+            while(true){
+                b2 = (Stockbroker) ois.readObject();
+                if(b2.getId() == stockbrokerId) {
+                    b1 = b2;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return b1;
+    }   
+    
+    
+    
     public static int GenerateStockbrokerID() {
         int ID_LOWER_BOUND = 1000000;
         int ID_UPPER_BOUND = 9999999;
@@ -146,7 +174,7 @@ public interface Account {
         return result;
     }
     
-    public static boolean CheckStockbrokerAccountExistence(int stockbrokerId) {
+    public static boolean checkStockbrokerAccountExistence(int stockbrokerId) {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
@@ -171,6 +199,36 @@ public interface Account {
         }
         return result;
     }
+
+    
+    
+    
+    public static boolean CheckInvestorAccountExistence(int investorId) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+            Investor i;
+            ois = new ObjectInputStream(new FileInputStream("Investor.bin"));
+             
+            while(true){
+                i = (Investor) ois.readObject();
+                if(i.getId()== investorId) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
     
     public static boolean CheckStockbrokerAccountExistence(String Email) {
         ObjectInputStream ois = null;
@@ -225,6 +283,9 @@ public interface Account {
     }
     
     
+    
+    
+    
     public static boolean EmployeepasswordMatch(int EmployeeID, String Password) {
         ObjectInputStream ois = null;
         boolean result = false;
@@ -254,17 +315,17 @@ public interface Account {
     }
     
     
-    public static boolean stockbrokerIdPasswordMatch(int stockbrokerId, String Password) {
+    public static boolean stockbrokerIdPasswordMatch(int stockbrokerId, String password) {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
-             Stockbroker b;
-             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+            Stockbroker b;
+            ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
              
             while(true){
                 b = (Stockbroker) ois.readObject();
                 if(b.getId() == stockbrokerId) {
-                    if(b.getPassword().equals(Password)) {
+                    if(b.getPassword().equals(password)) {
                         result = true;
                     }
                 }
@@ -309,31 +370,6 @@ public interface Account {
     }
 
     
-    public static Stockbroker getStockbrokerInstance(int stockbrokerId) {
-        ObjectInputStream ois = null;
-        Stockbroker ob = null;
-        try {
-             Stockbroker b;
-             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
-             
-            while(true){
-                b = (Stockbroker) ois.readObject();
-                if(b.getId() == stockbrokerId) {
-                    ob = b;
-                }
-            }
-        }
-        catch(RuntimeException e){
-            e.printStackTrace();
-        }
-        catch (Exception ex) {
-            try {
-                if(ois!=null)
-                    ois.close();
-            } catch (IOException ex1) {  }           
-        }
-        return ob;
-    }
 
     
     
@@ -535,6 +571,9 @@ public interface Account {
         }
         return result;
     }
+    
+    
+    
     
     
     public static boolean companyIdPasswordMatch(int companyId, String password) {

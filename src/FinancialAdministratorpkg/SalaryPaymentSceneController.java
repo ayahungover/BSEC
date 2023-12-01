@@ -68,7 +68,7 @@ public class SalaryPaymentSceneController implements Initializable {
     @FXML
     private void payEmployeeButtonOnClick(ActionEvent event) throws IOException, ClassNotFoundException {
         int id = Integer.parseInt(idTextField.getText());
-        if (!Account.CheckStockbrokerAccountExistence(id)) {
+        if (!Account.checkStockbrokerAccountExistence(id)) {
             PopUp.Message("Employee Doesn't Exist !");
         }
         else {

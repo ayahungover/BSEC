@@ -53,11 +53,13 @@ public class SalaryAndBalanceSceneController implements Initializable {
     }    
 
     @FXML
-    private void rechargeButtonOnClick(ActionEvent event) {
+    private void rechargeButtonOnClick(ActionEvent event) throws IOException, ClassNotFoundException {
         double newBalance = Double.parseDouble(rechargeTextField.getText()) + b.getBalance();
         
-        b.setBalance(newBalance);
+
+        Order.updateStockbrokerBalance(b, newBalance);
         PopUp.Message("Recharge successful! Please check balance. ");
+        
         balanceTextArea.setText("your current balance is: "+ newBalance);
     }
 

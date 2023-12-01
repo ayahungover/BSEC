@@ -63,5 +63,18 @@ public class FinancialAdministratorHomePageSceneController implements Initializa
         Parent root = loader.load();
         BorderPane.setCenter(root);
     }
+
+    @FXML
+    private void reportsMenuItemOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReportsScene.fxml"));
+        Parent root = loader.load();
+        BorderPane.setCenter(root);
+    }
+
+    @FXML
+    private void licenseDetailsMenuItemOnClick(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("LicenseNContract.fxml"));
+        BorderPane.setCenter(parent);
+    }
     
 }

@@ -23,6 +23,7 @@
           <Menu mnemonicParsing="false" text="Investors">
             <items>
               <MenuItem fx:id="listOfInvestors" mnemonicParsing="false" onAction="#listOfInvestorsMenuItemOnClick" text="List of investors" />
+                  <MenuItem mnemonicParsing="false" onAction="#investorHistoryMenuItemOnClick" text="Investor History" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

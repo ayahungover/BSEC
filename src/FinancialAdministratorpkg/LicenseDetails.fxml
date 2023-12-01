@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinancialAdministratorpkg.LicenseDetailsController">
+   <children>
+      <TextField fx:id="licenseTitle" layoutX="122.0" layoutY="87.0" promptText="License Title" />
+      <TextField fx:id="cName" layoutX="122.0" layoutY="126.0" promptText="Company Name" />
+      <TextField fx:id="activeStatus" layoutX="122.0" layoutY="169.0" promptText="Active Status" />
+      <TextArea fx:id="licenseDesciption" layoutX="14.0" layoutY="280.0" prefHeight="221.0" prefWidth="672.0" />
+   </children>
+</AnchorPane>
