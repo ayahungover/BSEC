@@ -1,7 +1,7 @@
 package mainpkg;
 
 import Brokerpkg.Stockbroker;
-import com.sun.corba.se.pept.broker.Broker;
+import SECAdministratorpkg.SECAdministrator;
 import companypkg.Company;
 import employeepkg.Employee;
 import investorpkg.Investor;
@@ -150,8 +150,8 @@ public interface Account {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
-            Stockbroker b;
-            ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
+             Stockbroker b;
+             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
              
             while(true){
                 b = (Stockbroker) ois.readObject();
@@ -254,7 +254,7 @@ public interface Account {
     }
     
     
-    public static boolean stockbrokerIdPasswordMatch(int stockbrokerId, String Password) {
+    public static boolean StockbrokerPasswordMatch(int EmployeeID, String Password) {
         ObjectInputStream ois = null;
         boolean result = false;
         try {
@@ -263,7 +263,7 @@ public interface Account {
              
             while(true){
                 b = (Stockbroker) ois.readObject();
-                if(b.getId() == stockbrokerId) {
+                if(b.getId() == EmployeeID) {
                     if(b.getPassword().equals(Password)) {
                         result = true;
                     }
@@ -309,7 +309,7 @@ public interface Account {
     }
 
     
-    public static Stockbroker getStockbrokerInstance(int stockbrokerId) {
+    public static Stockbroker getStockbrokerInstance(int EmployeeID) {
         ObjectInputStream ois = null;
         Stockbroker ob = null;
         try {
@@ -318,7 +318,7 @@ public interface Account {
              
             while(true){
                 b = (Stockbroker) ois.readObject();
-                if(b.getId() == stockbrokerId) {
+                if(b.getId() == EmployeeID) {
                     ob = b;
                 }
             }
@@ -617,6 +617,192 @@ public interface Account {
             } catch (IOException ex1) {  }           
         }
         return c1;
+    }
+    
+    public static int GenerateSECAdministratorID(){
+        int ID_LOWER_BOUND = 1000000;
+        int ID_UPPER_BOUND = 9999999;
+        Set<Integer> usedIds = new HashSet<>();
+        ObjectInputStream ois = null;
+        try {
+            SECAdministrator s;
+            ois = new ObjectInputStream(new FileInputStream("SECAdministrator.bin"));
+             
+            while(true){
+                s = (SECAdministrator) ois.readObject();
+                usedIds.add(s.getId());
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        Random random = new Random();
+        int id;
+        do {
+            id = ID_LOWER_BOUND + random.nextInt(ID_UPPER_BOUND - ID_LOWER_BOUND);
+        } while (usedIds.contains(id));
+        usedIds.add(id);
+        return id;
+    }
+    
+    public static String GenerateSECAdministratorPassword() {
+        String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String LOWER = "abcdefghijklmnopqrstuvwxyz";
+
+        String ALL_CHARACTERS = UPPER + LOWER ;
+        int PASSWORD_LENGTH = 12;
+
+        Random random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+        for (int i = 0; i < PASSWORD_LENGTH; i++) {
+            int index = random.nextInt(ALL_CHARACTERS.length());
+            password.append(ALL_CHARACTERS.charAt(index));
+        }
+        return password.toString();
+        
+        
+    }
+    
+    
+    public static boolean CheckSECAdministratorAccountExistence(int SECAdministratorId) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+            SECAdministrator s;
+            ois = new ObjectInputStream(new FileInputStream("SECAdministrator.bin"));
+             
+            while(true){
+                s = (SECAdministrator) ois.readObject();
+                if(s.getId()== SECAdministratorId) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+    public static boolean CheckSECAdministratorAccountExistence(String Email) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+            SECAdministrator s;
+            ois = new ObjectInputStream(new FileInputStream("SECAdministrator.bin"));
+             
+            while(true){
+                s = (SECAdministrator) ois.readObject();
+                if(s.getEmail().equals(Email)) {
+                    result = true;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+  
+    
+    public static boolean SECAdministratorIdPasswordMatch(int SECAdministratorId, String Password) {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+             SECAdministrator s;
+             ois = new ObjectInputStream(new FileInputStream("SECAdministratorId.bin"));
+             
+            while(true){
+                s = (SECAdministrator) ois.readObject();
+                if(s.getId() == SECAdministratorId) {
+                    if(s.getPassword().equals(Password)) {
+                        System.out.println(s.getPassword() + Password);
+                        result = true;
+                    }
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
+    }
+    
+    public static SECAdministrator getSECAdministratorInstance(int SECAdministratorId) {
+        ObjectInputStream ois = null;
+        SECAdministrator ob = null;
+        try {
+             SECAdministrator s;
+             ois = new ObjectInputStream(new FileInputStream("SECAdministrator.bin"));
+             
+            while(true){
+                s = (SECAdministrator) ois.readObject();
+                if(s.getId() == SECAdministratorId) {
+                    ob = s;
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return ob;
+    }
+    
+    public static boolean SECAdministratorAnyAccountExistance() {
+        ObjectInputStream ois = null;
+        boolean result = false;
+        try {
+             SECAdministrator s;
+             ois = new ObjectInputStream(new FileInputStream("SECAdministratorId.bin"));
+             
+            while(true){
+                s = (SECAdministrator) ois.readObject();
+                if(s == null) {   
+                    result = true; 
+                }
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+        return result;
     }
 
     

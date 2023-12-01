@@ -6,7 +6,7 @@ import mainpkg.User;
 
 
 public class Investor extends User implements Serializable {
-    private double balance;
+    private double balance = 0.0;
     
     public Investor(int id,
             String name,

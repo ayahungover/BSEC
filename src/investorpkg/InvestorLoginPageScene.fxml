@@ -7,8 +7,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="investorpkg.InvestorLoginPageSceneController">
    <children>
-      <TextField fx:id="idTextField" layoutX="270.0" layoutY="123.0" text="Enter investor ID" />
-      <TextField fx:id="passwordTextField" layoutX="270.0" layoutY="188.0" text="Enter password" />
+      <TextField fx:id="idTextField" layoutX="270.0" layoutY="123.0" promptText="Enter investor ID" />
+      <TextField fx:id="passwordTextField" layoutX="270.0" layoutY="188.0" promptText="Enter password" />
       <Button fx:id="loginButton" layoutX="319.0" layoutY="252.0" mnemonicParsing="false" onAction="#loginButtonOnClick" text="Login" />
       <Button layoutX="289.0" layoutY="376.0" mnemonicParsing="false" onAction="#createAccountButtonOnClick" text="Create an account" />
       <Label layoutX="283.0" layoutY="348.0" text="Don't have an account?" />
