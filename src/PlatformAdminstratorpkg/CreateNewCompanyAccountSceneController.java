@@ -53,7 +53,7 @@ public class CreateNewCompanyAccountSceneController implements Initializable {
             Company c = new Company(id, name, address, contact, email, password, balance);
             PlatformAdminstrator.createNewCompanyAccount(c);
             PopUp.Message("Account has been Succesfully Created\n"
-                    + "Your Customer ID is: " + Integer.toString(id));            
+                    + "Your Company ID is: " + Integer.toString(id));            
             
         }
     }

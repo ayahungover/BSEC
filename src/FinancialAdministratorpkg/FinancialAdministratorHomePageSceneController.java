@@ -25,8 +25,6 @@ import javafx.stage.Stage;
 public class FinancialAdministratorHomePageSceneController implements Initializable {
 
     @FXML
-    private MenuItem seeEmployeeSalaryMenuItem;
-    @FXML
     private BorderPane BorderPane;
 
 
@@ -36,7 +34,10 @@ public class FinancialAdministratorHomePageSceneController implements Initializa
     }    
 
     @FXML
-    private void seeEmployeeSalaryMenuItemOnClick(ActionEvent event) {
+    private void seeEmployeeSalaryMenuItemOnClick(ActionEvent event) throws IOException {
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("SalaryDetailsScene.fxml"));
+       Parent root = loader.load();
+       BorderPane.setCenter(root);
     }
 
     @FXML
@@ -46,6 +47,21 @@ public class FinancialAdministratorHomePageSceneController implements Initializa
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();        
+    }
+
+    @FXML
+    private void salaryPaymentButtonOnClick(ActionEvent event) throws IOException {
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("SalaryPaymentScene.fxml"));
+       Parent root = loader.load();
+       BorderPane.setCenter(root);
+
+    }
+
+    @FXML
+    private void taxCalculationMenuItemOnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TaxCalculationScene.fxml"));
+        Parent root = loader.load();
+        BorderPane.setCenter(root);
     }
     
 }

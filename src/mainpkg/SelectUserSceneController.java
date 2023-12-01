@@ -26,6 +26,8 @@ public class SelectUserSceneController implements Initializable {
     private RadioButton companyRadioButton;
     @FXML
     private RadioButton employeeRadioButton;
+    @FXML
+    private RadioButton stockbrokerRadioButton;
 
 
     @Override
@@ -45,6 +47,13 @@ public class SelectUserSceneController implements Initializable {
         else if(companyRadioButton.isSelected()) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/companypkg/CompanyLoginPageScene.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else if(stockbrokerRadioButton.isSelected()) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/Brokerpkg/StockbrokerLoginPageScene.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

@@ -2,23 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeepkg.EmployeeLoginPageSceneController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employeepkg.EmployeeLoginPageSceneController">
    <children>
-      <TextField fx:id="employeeIdTextField" layoutX="226.0" layoutY="135.0" promptText="Employee ID" />
-      <TextField fx:id="employeePasswordTextField" layoutX="226.0" layoutY="192.0" promptText="Employee Password" />
-      <ComboBox fx:id="designationComboBox" layoutX="225.0" layoutY="80.0" prefWidth="150.0" promptText="Designation" />
-      <Button fx:id="loginButton" layoutX="274.0" layoutY="233.0" mnemonicParsing="false" onAction="#loginButtonOnClick" text="Login" />
-      <Button layoutX="235.0" layoutY="327.0" mnemonicParsing="false" onAction="#employeeSignUp" prefHeight="27.0" prefWidth="176.0" text="Employee Sign Up" />
-      <Label layoutX="138.0" layoutY="300.0" prefHeight="19.0" prefWidth="371.0" text="Didn't have an Account? Select designations and Sing up.">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Button layoutX="531.0" layoutY="374.0" mnemonicParsing="false" onAction="#backButtonOnClick" text="Back" />
+      <TextField fx:id="employeeIdTextField" layoutX="226.0" layoutY="158.0" promptText="Employee ID" />
+      <ComboBox fx:id="designationComboBox" layoutX="225.0" layoutY="103.0" prefWidth="150.0" promptText="Designation" />
+      <Button fx:id="loginButton" layoutX="274.0" layoutY="272.0" mnemonicParsing="false" onAction="#loginButtonOnClick" text="Login" />
+      <PasswordField fx:id="employeePasswordPasswordField" layoutX="226.0" layoutY="217.0" promptText="Employee password" />
    </children>
 </AnchorPane>

@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import mainpkg.PopUp;
 
 
 public class SalaryAndBalanceSceneController implements Initializable {
@@ -27,55 +28,43 @@ public class SalaryAndBalanceSceneController implements Initializable {
 
     @FXML
     private TextField rechargeTextField;
-    @FXML
-    private Button rechargeButton;
     
     private double balance;
+
+    private Stockbroker b;
     @FXML
     private TextArea balanceTextArea;
+    
+    
+    public void data(Stockbroker b){
+        this.b = b;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        File file = new File("brokerSalary.bin");
-        DataInputStream dis = null;
-        
-        if(!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(SalaryAndBalanceSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (b!=null){
+            System.out.println("balance= "+b.getBalance());
+            balanceTextArea.setText("Your current balance is: "+ b.getBalance());
         }
         else{
-            try {
-                dis = new DataInputStream(new FileInputStream("Investor.bin"));
-                while (true){
-                    balance = dis.readDouble();
-                }
-                
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(SalaryAndBalanceSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(SalaryAndBalanceSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            System.out.println("b is null");
         }
-        balanceTextArea.setText(Double.toString(balance));
-        
+   
     }    
 
     @FXML
     private void rechargeButtonOnClick(ActionEvent event) {
-        try {
-            double addableBalance = Double.parseDouble(rechargeTextField.getText());
-            balance += addableBalance;
-            balanceTextArea.setText("Total balance: " + Double.toString(balance));
-            DataOutputStream dos = new DataOutputStream(new FileOutputStream("brokerBalance.bin"));
-            dos.writeDouble(balance);
-        } catch (IOException ex) {
-            Logger.getLogger(SalaryAndBalanceSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        double newBalance = Double.parseDouble(rechargeTextField.getText()) + b.getBalance();
         
+        b.setBalance(newBalance);
+        PopUp.Message("Recharge successful! Please check balance. ");
+        balanceTextArea.setText("your current balance is: "+ newBalance);
+    }
+
+    @FXML
+    private void seeBalanceButtonOnClick(ActionEvent event) {
+        double newBalance = b.getBalance();
+        balanceTextArea.setText("your current balance is: "+ newBalance);
     }
     
 }

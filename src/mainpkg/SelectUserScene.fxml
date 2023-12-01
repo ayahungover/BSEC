@@ -7,13 +7,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.SelectUserSceneController">
    <children>
-      <RadioButton fx:id="investorRadioButton" layoutX="141.0" layoutY="192.0" mnemonicParsing="false" text="Investor">
+      <RadioButton fx:id="investorRadioButton" layoutX="72.0" layoutY="219.0" mnemonicParsing="false" text="Investor">
          <toggleGroup>
             <ToggleGroup fx:id="tg" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="companyRadioButton" layoutX="288.0" layoutY="192.0" mnemonicParsing="false" text="Company" toggleGroup="$tg" />
-      <RadioButton fx:id="employeeRadioButton" layoutX="440.0" layoutY="192.0" mnemonicParsing="false" text="Employee" toggleGroup="$tg" />
-      <Button layoutX="305.0" layoutY="314.0" mnemonicParsing="false" onAction="#nextButtonOnClick" text="Next" />
+      <RadioButton fx:id="companyRadioButton" layoutX="223.0" layoutY="219.0" mnemonicParsing="false" text="Company" toggleGroup="$tg" />
+      <RadioButton fx:id="employeeRadioButton" layoutX="541.0" layoutY="219.0" mnemonicParsing="false" text="Employee" toggleGroup="$tg" />
+      <Button layoutX="322.0" layoutY="269.0" mnemonicParsing="false" onAction="#nextButtonOnClick" text="Next" />
+      <RadioButton fx:id="stockbrokerRadioButton" layoutX="377.0" layoutY="219.0" mnemonicParsing="false" text="Stockbroker" toggleGroup="$tg" />
    </children>
 </AnchorPane>

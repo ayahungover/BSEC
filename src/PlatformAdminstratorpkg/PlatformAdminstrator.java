@@ -2,7 +2,6 @@
 package PlatformAdminstratorpkg;
 
 import Brokerpkg.Stockbroker;
-import SECAdministratorpkg.SECAdministrator;
 import Stockpkg.Stock;
 import companypkg.Company;
 import employeepkg.Employee;
@@ -187,24 +186,24 @@ public interface PlatformAdminstrator {
             oos.writeObject(c);
 
         } catch (IOException ex) {
-            Logger.getLogger(Investor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if(oos != null) oos.close();
             } catch (IOException ex) {
-                Logger.getLogger(Investor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-    public static void createNewSECAccount(SECAdministrator s) {
+
+    public static void createNewStockbrokerAccount(Stockbroker b) {
         
         File f = null;
         FileOutputStream fos = null;      
         ObjectOutputStream oos = null;
 
         try {
-            f = new File("SECAdministrator.bin");
+            f = new File("Stockbroker.bin");
             if(f.exists()){
                 fos = new FileOutputStream(f,true);
                 oos = new AppendableObjectOutputStream(fos);                
@@ -213,20 +212,22 @@ public interface PlatformAdminstrator {
                 fos = new FileOutputStream(f);
                 oos = new ObjectOutputStream(fos);               
             }
-            oos.writeObject(s);
+            oos.writeObject(b);
 
         } catch (IOException ex) {
-            Logger.getLogger(SECAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stockbroker.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if(oos != null) oos.close();
             } catch (IOException ex) {
-                Logger.getLogger(SECAdministrator.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stockbroker.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-
+    
+    
+    
 
     
 }

@@ -53,22 +53,6 @@ public class AddNewEmployeeSceneController implements Initializable {
         String email = emailTextField.getText();
         LocalDate DOB = dobDatePicker.getValue();
         String designation = designationComboBox.getValue();
-        if(designation == "Broker"){  
-            if(Account.CheckStockbrokerAccountExistence(email) == true) {
-                PopUp.Message("Account Already Exists !");
-                return;
-            }
-        }
-        int id = Account.GenerateStockbrokerID();
-        String password = Account.GenerateStockbrokerPassword();
-        LocalDate DOJ = LocalDate.now();
-        double salary = Double.parseDouble(salaryTextField.getText());
-        Stockbroker b = new Stockbroker(id, name, address, contactNumber, email, DOB, DOJ, password, designation, salary);
-        PlatformAdminstrator.StockbrokerCreateNewAccount(b);
-        
-        PopUp.Message("Account has been Successfully Created\n"
-                + "Employee ID: " + id +"\n"
-                + "Employee Password: " + password);
     }
     
 }

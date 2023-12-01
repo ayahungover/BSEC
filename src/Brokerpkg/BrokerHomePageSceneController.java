@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
@@ -47,9 +46,19 @@ public class BrokerHomePageSceneController implements Initializable {
 
     @FXML
     private void salaryAndBalanceMenuItemOnClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SalaryAndBalanceScene.fxml"));
-        Parent root = loader.load();
-        BorderPane.setCenter(root);        
+        try{
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Brokerpkg/SalaryAndBalanceScene.fxml"));
+            Parent root = loader.load();
+            SalaryAndBalanceSceneController ctrl = loader.getController();
+            if (b!=null){
+                ctrl.data(this.b);
+                BorderPane.setCenter(root);   
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+            
     }
 
     @FXML
@@ -66,6 +75,10 @@ public class BrokerHomePageSceneController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BuyStockScene.fxml"));
         Parent root = loader.load();
         BorderPane.setCenter(root);   
+        BuyStockSceneController ctrl = loader.getController();
+        ctrl.data(b);
+        BorderPane.setCenter(root);
+        System.out.println(b.getBalance());
     }
     
 }
