@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="investorpkg.RechargeAndCheckBalanceController">
+   <children>
+      <Label fx:id="currentBalanceLabel" layoutX="193.0" layoutY="56.0" prefHeight="56.0" prefWidth="354.0">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="148.0" prefHeight="34.0" prefWidth="113.0" text="Recharge">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="enterAmountTextArea" layoutX="55.0" layoutY="193.0" prefHeight="34.0" prefWidth="195.0" promptText="Enter a Amount" />
+      <Button layoutX="55.0" layoutY="251.0" mnemonicParsing="false" onAction="#rechargeAccountButtonOnClick" prefHeight="34.0" prefWidth="125.0" text="Recharge Account" />
+      <Button layoutX="55.0" layoutY="67.0" mnemonicParsing="false" onAction="#checkBalanceButtonOnClick" prefHeight="34.0" prefWidth="125.0" text="Check Balance" />
+   </children>
+</AnchorPane>
