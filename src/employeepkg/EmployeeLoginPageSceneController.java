@@ -89,18 +89,24 @@ public class EmployeeLoginPageSceneController implements Initializable {
 
     @FXML
     private void employeeSignUp(ActionEvent event) throws IOException {
-        if (designationComboBox.getValue().equals("SEC Adminstrator")) {
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/PlatformAdminstratorpkg/CreateNewSECAccount.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
 
-        } else {
+        if(designationComboBox.getValue().equals("SEC Adminstrator")) {
+            if (!SECAdministratorAnyAccountExistance()){
+                PopUp.Message("An account already Exist");
+            }else{
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("/PlatformAdminstratorpkg/CreateNewSECAccount.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
+        else{
             PopUp.Message("Select a designation 1st");
         }
     }
+
 
     @FXML
     private void backButtonOnClick(ActionEvent event) throws IOException {

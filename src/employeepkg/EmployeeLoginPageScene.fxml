@@ -14,7 +14,7 @@
       <ComboBox fx:id="designationComboBox" layoutX="225.0" layoutY="80.0" prefWidth="150.0" promptText="Designation" />
       <Button fx:id="loginButton" layoutX="274.0" layoutY="233.0" mnemonicParsing="false" onAction="#loginButtonOnClick" text="Login" />
       <Button layoutX="235.0" layoutY="327.0" mnemonicParsing="false" onAction="#employeeSignUp" prefHeight="27.0" prefWidth="176.0" text="Employee Sign Up" />
-      <Label layoutX="138.0" layoutY="300.0" prefHeight="19.0" prefWidth="371.0" text="Didn't have an Account? Select designations and Sing up.">
+      <Label layoutX="138.0" layoutY="300.0" prefHeight="19.0" prefWidth="371.0" text="Don't have an account? Select designation and sign up." wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
