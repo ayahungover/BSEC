@@ -45,35 +45,6 @@ public class InvestorListSceneController implements Initializable {
         dojColumn.setCellValueFactory(new PropertyValueFactory<Investor, LocalDate>("doj"));
         contactColumn.setCellValueFactory(new PropertyValueFactory<Investor, String>("contact"));
 
-//        FileInputStream fis = null;
-//        try {
-//            fis = new FileInputStream("Investor.bin");
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(InvestorListSceneController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        ObjectInputStream ois = null;
-//        try {
-//            ois = new ObjectInputStream(fis);
-//        } catch (IOException ex) {
-//            Logger.getLogger(InvestorListSceneController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//            Investor i;
-//
-//            while (true) {
-//                try {
-//                    i = (Investor) ois.readObject();
-//                    investorList.add(i);
-//                } catch (EOFException e) {
-//                    break;
-//                }
-//            }
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
-
-
         ObjectInputStream ois = null;
         ObservableList <Investor> investorList = FXCollections.observableArrayList();
         try {

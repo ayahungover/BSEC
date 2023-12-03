@@ -2,6 +2,7 @@
 package Brokerpkg;
 
 import Stockpkg.Stock;
+import investorpkg.PlaceOrder;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -291,5 +292,96 @@ public class Order implements Serializable {
             }
         }
     }
+    
+//    public static String getInvestorOrders(int investorId, int stockbrokerId) {
+//        File f = new File("PlaceOrder.bin");
+//        String orders = null;
+//        if (f.exists() == true){
+//            FileInputStream fis = null;
+//            try {
+//                PlaceOrder p;
+//                fis = new FileInputStream(f);
+//                ObjectInputStream ois;
+//                try {
+//                    ois = new ObjectInputStream(fis);
+//                    while(true){
+//                        try {
+//                            p = (PlaceOrder) ois.readObject();
+//                            if (p.getStockBrokerId() == stockbrokerId && p.getInvestorId() == investorId){
+//                                orders += "\n" + p.toString();
+//                            }
+//                        }catch(EOFException e){
+//                            orders = "reached the end of file!";
+//                            break;
+//                            
+//                        }
+//                        catch (ClassNotFoundException ex) {
+//                            Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+//                        } catch (IOException ex) {
+//                            Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//
+//                    }
+//                    
+//                } catch (IOException ex) {
+//                    Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                    
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//                try {
+//                    fis.close();
+//                } catch (IOException ex) {
+//                    Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        else{
+//            orders = "No orders have been placed yet!";
+//        }
+//        return orders;        
+//    }
+    
+
+
+    public static String getInvestorOrders(int investorId, int stockbrokerId) {
+        File file = new File("PlaceOrder.bin");
+        String orders = null;
+
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                PlaceOrder order;
+
+                while (true) {
+                    try {
+                        order = (PlaceOrder) ois.readObject();
+
+                        if (order.getStockBrokerId() == stockbrokerId && order.getInvestorId() == investorId) {
+                            if (orders == null) {
+                                orders = order.toString();
+                            } else {
+                                orders += "\n" + order.toString();
+                            }
+                        }
+                    } catch (EOFException e) {
+                        orders = (orders == null) ? "No orders have been placed yet!" : orders;
+                        break;
+                    } catch (ClassNotFoundException | IOException ex) {
+                        Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            orders = "No orders have been placed yet!";
+        }
+
+        return orders;
+    }
+    
+    
 }
 

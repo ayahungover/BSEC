@@ -17,8 +17,8 @@
             <TableColumn fx:id="newPriceColumn" prefWidth="94.0" text="New Price" />
         </columns>
       </TableView>
-      <Button layoutX="310.0" layoutY="314.0" mnemonicParsing="false" onAction="#placeStockButtonOnClick" prefHeight="39.0" prefWidth="103.0" text="Place Stock" />
-      <Label layoutX="37.0" layoutY="21.0" prefHeight="39.0" prefWidth="168.0" text="Select  and Buy Strock">
+      <Button layoutX="310.0" layoutY="314.0" mnemonicParsing="false" onAction="#placeStockButtonOnClick" prefHeight="39.0" prefWidth="103.0" text="Proceed" />
+      <Label layoutX="37.0" layoutY="21.0" prefHeight="39.0" prefWidth="168.0" text="Select  and buy stock">
          <font>
             <Font size="16.0" />
          </font>

@@ -72,14 +72,14 @@ public class CreateNewSECAccountController implements Initializable {
             PlatformAdminstrator.createNewSECAccount(s);
             PopUp.Message("Account has been Succesfully Created\n"
                     + "Your SEC Administrator ID is: " + Integer.toString(id)
-                    +"Your Password is "+ password);
+                    );
         }
     }
 
     @FXML
     private void backButtonOnClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/SECAdministratorpkg/SECAdministratorLogInPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/employeepkg/EmployeeLoginPageScene.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -44,6 +44,9 @@ public class OrderSummeryController implements Initializable {
     public void data(Investor i){
         this.i = i;
     }
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         stockCodeColumn.setCellValueFactory(new PropertyValueFactory<PlaceOrder, String>("stockCode"));
@@ -52,20 +55,32 @@ public class OrderSummeryController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<PlaceOrder, String>("stockCode"));
         purcheseDateColumn.setCellValueFactory(new PropertyValueFactory<PlaceOrder, LocalDate>("dop"));
         
-        ObjectInputStream ois = null;
         ObservableList <PlaceOrder> placeOrderList = FXCollections.observableArrayList();
+        ObjectInputStream ois = null;
+        
         try {
              PlaceOrder p;
              ois = new ObjectInputStream(new FileInputStream("PlaceOrder.bin"));
-             
+            
+            
             while(true){
-                p = (PlaceOrder) ois.readObject();
-                if (i.getId() == p.getInvestorId()){
-                    placeOrderList.add(p);
+                try{
+                    p = (PlaceOrder) ois.readObject();
+                    if (i.getId() == p.getInvestorId() && i!=null){
+                        placeOrderList.add(p);
+                        System.out.println(i.getId() + p.getInvestorId());
+                    }
+                    else{
+                        System.out.println("Null hoye ase");
+                    }
+                }
+                catch(NullPointerException ex){
+                    break;
                 }
         
             }
         }
+            
         catch(RuntimeException e){
             e.printStackTrace();
         }
@@ -78,6 +93,10 @@ public class OrderSummeryController implements Initializable {
 
         
         tableView.setItems(placeOrderList);
+        
+        
+        
+        
     }
         
 

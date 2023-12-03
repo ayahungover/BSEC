@@ -226,8 +226,7 @@ public interface PlatformAdminstrator {
         }
     }
     
-    
-    public static void createNewSECAccount(SECAdministrator s) {
+        public static void createNewSECAccount(SECAdministrator s) {
         
         File f = null;
         FileOutputStream fos = null;      
@@ -255,6 +254,7 @@ public interface PlatformAdminstrator {
             }
         }
     }
+    
 
     
     

@@ -5,9 +5,15 @@
 package SECAdministratorpkg;
 
 import Brokerpkg.Stockbroker;
+import investorpkg.Investor;
+import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -19,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import mainpkg.AppendableObjectOutputStream;
 
 /**
  * FXML Controller class
@@ -55,7 +62,7 @@ public class BrokerListController implements Initializable {
         ObservableList <Stockbroker> stockbrokerList = FXCollections.observableArrayList();
         try {
              Stockbroker s;
-             ois = new ObjectInputStream(new FileInputStream("brokerSalary.bin"));
+             ois = new ObjectInputStream(new FileInputStream("Stockbroker.bin"));
              
             while(true){
                 s = (Stockbroker) ois.readObject();
@@ -77,7 +84,59 @@ public class BrokerListController implements Initializable {
     }
 
     @FXML
-    private void removeButtonOnClick(ActionEvent event) {
+    private void removeButtonOnClick(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+        
+        ObservableList <Stockbroker> stockbrokerList = FXCollections.observableArrayList();
+        
+        Stockbroker s1 = tableView.getSelectionModel().getSelectedItem();
+        File f = new File("Stockbroker.bin");
+        FileInputStream fis = new FileInputStream(f);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Stockbroker temp = null;
+        try {
+            while(true){
+                temp = (Stockbroker) ois.readObject();
+                if (temp.getId() != s1.getId()){
+                stockbrokerList.add(temp);
+                }
+            }
+        } catch (FileNotFoundException ex ) {ex.printStackTrace();}
+        catch(EOFException e){}
+        catch(IOException ex){ex.printStackTrace();}
+               
+        finally {
+            try {
+                ois.close();
+            } catch (IOException ex) {}
+        }
+        
+        
+        f.delete();
+        f = new File("Stockbroker.bin");        
+        try{
+            FileOutputStream fos = new FileOutputStream(f);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            if(f.exists()){
+                fos = new FileOutputStream(f,true);
+                oos = new AppendableObjectOutputStream(fos);                
+            }
+            else{
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);               
+            }
+            for(Stockbroker e: stockbrokerList){
+                oos.writeObject(e);
+            }
+            oos.close();
+                
+        } catch (IOException e) {}
+        finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {}
+        }
+        tableView.setItems(stockbrokerList);
     }
+    
     
 }

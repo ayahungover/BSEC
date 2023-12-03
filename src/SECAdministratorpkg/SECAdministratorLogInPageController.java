@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mainpkg.Account;
 import static mainpkg.Account.SECAdministratorAnyAccountExistance;
+//import static mainpkg.Account.SECAdministratorAnyAccountExistance;
 import mainpkg.PopUp;
 
 /**
@@ -78,7 +79,7 @@ public class SECAdministratorLogInPageController implements Initializable {
 
     @FXML
     private void sECSignUpButtonClick(ActionEvent event) throws IOException {
-        if (!SECAdministratorAnyAccountExistance()){
+        if (SECAdministratorAnyAccountExistance()){
             PopUp.Message("An account alreay Exist");
         }else{
         
@@ -90,7 +91,7 @@ public class SECAdministratorLogInPageController implements Initializable {
         }
     }
     
-    
+
 
 
 }

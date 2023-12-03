@@ -5,9 +5,14 @@
 package SECAdministratorpkg;
 
 import investorpkg.Investor;
+import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -19,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import mainpkg.AppendableObjectOutputStream;
 
 /**
  * FXML Controller class
@@ -81,7 +87,58 @@ public class InvestorListController implements Initializable {
     }    
 
     @FXML
-    private void removeButtonONClick(ActionEvent event) {
+    private void removeButtonONClick(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObservableList <Investor> investorList = FXCollections.observableArrayList();
+        
+        Investor s1 = tableView.getSelectionModel().getSelectedItem();
+        File f = new File("Investor.bin");
+        FileInputStream fis = new FileInputStream(f);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Investor temp = null;
+        try {
+            while(true){
+                temp = (Investor) ois.readObject();
+                if (temp.getId() != s1.getId()){
+                investorList.add(temp);
+                }
+            }
+        } catch (FileNotFoundException ex ) {ex.printStackTrace();}
+        catch(EOFException e){}
+        catch(IOException ex){ex.printStackTrace();}
+               
+        finally {
+            try {
+                ois.close();
+            } catch (IOException ex) {}
+        }
+        
+        
+        f.delete();
+        f = new File("Investor.bin");        
+        try{
+            FileOutputStream fos = new FileOutputStream(f);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            if(f.exists()){
+                fos = new FileOutputStream(f,true);
+                oos = new AppendableObjectOutputStream(fos);                
+            }
+            else{
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);               
+            }
+            for(Investor e: investorList){
+                oos.writeObject(e);
+            }
+            oos.close();
+                
+        } catch (IOException e) {}
+        finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {}
+        }
+        tableView.setItems(investorList);
+    
 
     }
     
