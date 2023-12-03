@@ -25,6 +25,12 @@
                 <MenuItem mnemonicParsing="false" onAction="#taxCalculationMenuItemOnClick" text="Tax Calculation" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Analyze Expenses">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#seePieChartMenuItemOnClick" text="See pie chart" />
+                  <MenuItem mnemonicParsing="false" onAction="#incomeStatementMenuItemOnClick" text="Statement of income" />
+              </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="License">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#licenseDetailsMenuItemOnClick" text="License Details" />

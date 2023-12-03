@@ -66,13 +66,11 @@ public class OrderSummeryController implements Initializable {
             while(true){
                 try{
                     p = (PlaceOrder) ois.readObject();
-                    if (i.getId() == p.getInvestorId() && i!=null){
+//                    if (i.getId() == p.getInvestorId() && i!=null){
                         placeOrderList.add(p);
                         System.out.println(i.getId() + p.getInvestorId());
-                    }
-                    else{
-                        System.out.println("Null hoye ase");
-                    }
+//                    }
+                    
                 }
                 catch(NullPointerException ex){
                     break;

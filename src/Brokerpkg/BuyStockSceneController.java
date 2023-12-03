@@ -5,11 +5,15 @@ import PlatformAdminstratorpkg.PlatformAdminstrator;
 import Stockpkg.Stock;
 import investorpkg.Investor;
 import investorpkg.PlaceOrder;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +52,15 @@ public class BuyStockSceneController implements Initializable {
     private TextArea placedOrdersTextArea;
     @FXML
     private TextField investorIdTextField;
+    @FXML
+    private TableColumn<Investor, String> investorName;
+    @FXML
+    private TableColumn<Investor, Integer> idCol;
+    @FXML
+    private TableColumn<Investor, String> contactCol;
+    @FXML
+    private TableView<Investor> investorTableView;
+
     public void data (Stockbroker b){
         this.b = b;
     }
@@ -93,6 +106,38 @@ public class BuyStockSceneController implements Initializable {
         int investorId = Integer.parseInt(investorIdTextField.getText());
         int stockbrokerId = this.b.getId();
         placedOrdersTextArea.setText(Order.getInvestorOrders(investorId, stockbrokerId));
+    }
+
+    @FXML
+    private void loadInvestorListButtonOnClick(ActionEvent event) {
+        investorName.setCellValueFactory(new PropertyValueFactory<Investor, String>("name"));
+        idCol.setCellValueFactory(new PropertyValueFactory<Investor, Integer>("id"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<Investor, String>("contact"));
+        
+
+        ObjectInputStream ois = null;
+        ObservableList <Investor> investorList = FXCollections.observableArrayList();
+        try {
+             Investor i;
+             ois = new ObjectInputStream(new FileInputStream("Investor.bin"));
+             
+            while(true){
+                i = (Investor) ois.readObject();
+                investorList.add(i);
+            }
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            try {
+                if(ois!=null)
+                    ois.close();
+            } catch (IOException ex1) {  }           
+        }
+
+        
+        investorTableView.setItems(investorList);
     }
     
 }
